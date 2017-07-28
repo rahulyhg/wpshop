@@ -662,14 +662,12 @@ class wps_cart {
 
 		// Calcul Cart Informations
 		$cart_has_special_product = false;
-		if( !empty($cart_items) && is_array($cart_items) ) {
-			foreach( $cart_items as $item_id => $item ) {
-
-				if ( !empty( $item[ 'item_amount_to_pay_now' ] ) ) {
+		if ( ! empty( $cart_items ) && is_array( $cart_items ) ) {
+			foreach ( $cart_items as $item_id => $item ) {
+				if ( !empty( $item['item_amount_to_pay_now'] ) ) {
 					$cart_has_special_product = true;
-					$cart_infos['order_amount_to_pay_now'] += ( $item[ 'item_amount_to_pay_now' ] * $item[ 'item_qty' ] );
-				}
-				else {
+					$cart_infos['order_amount_to_pay_now'] += ( $item['item_amount_to_pay_now'] * $item['item_qty'] );
+				} else {
 					$cart_infos['order_amount_to_pay_now'] += $item['item_total_ttc'];
 				}
 
@@ -678,13 +676,11 @@ class wps_cart {
 				// VAT
 				if( !empty($order_tva[ $item['item_tva_rate'] ]) ) {
 					$order_tva[ $item['item_tva_rate'] ] += $item['item_tva_total_amount'];
-				}
-				else {
+				} else {
 					$order_tva[ $item['item_tva_rate'] ] = $item['item_tva_total_amount'];
 				}
 			}
-		}
-		else {
+		} else {
 			return array();
 		}
 

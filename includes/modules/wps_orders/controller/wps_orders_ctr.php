@@ -318,8 +318,8 @@ class wps_orders_ctr {
 		 * AJAX - Load order details in customer account
 		 */
 	function wps_orders_load_details() {
-
 		check_ajax_referer( 'wps_orders_load_details' );
+
 		$order_id = ( ! empty( $_POST['order_id'] ) ) ? wpshop_tools::varSanitizer( $_POST['order_id'] ) : '';
 		$user_id = get_current_user_id();
 		$status = false;
@@ -328,13 +328,13 @@ class wps_orders_ctr {
 			$order = get_post( $order_id );
 			$order_infos = get_post_meta( $order_id, '_order_postmeta', true );
 			$order_key = ( ! empty( $order_infos['order_key'] ) ) ? $order_infos['order_key'] : '-';
-			if ( ! empty( $order ) && ! empty( $user_id ) && $order->post_type == WPSHOP_NEWTYPE_IDENTIFIER_ORDER && $order->post_author == $user_id ) {
+			if ( ! empty( $order ) && ! empty( $user_id ) && WPSHOP_NEWTYPE_IDENTIFIER_ORDER === $order->post_type && $order->post_author === $user_id ) {
 				$result = do_shortcode( '[wps_cart cart_type="summary" oid="' . $order_id . '"]' );
 				$status = true;
 			}
 		}
-		echo json_encode( array( 'status' => $status, 'title' => sprintf( __( 'Order n° %s details', 'wpshop' ), $order_key ), 'content' => $result ) );
-		wp_die();
+
+		wp_die( wp_json_encode( array( 'status' => $status, 'title' => sprintf( __( 'Order n° %s details', 'wpshop' ), $order_key ), 'content' => $result ) ) );
 	}
 
 		/**
