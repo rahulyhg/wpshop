@@ -13,8 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$wps_customers_contacts = new WPS_Customers_Contacts();
-$contacts = $wps_customers_contacts->get_customer_contact_list( $customer_post );
+$WPS_Customers_Contacts_Action = new WPS_Customers_Contacts_Action();
+$contacts = $WPS_Customers_Contacts_Action->get_customer_contact_list( $customer_post );
 
 ?>
 <?php foreach ( $contacts as $user_id => $user ) : ?>

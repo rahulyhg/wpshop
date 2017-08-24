@@ -2168,7 +2168,7 @@ WHERE ATTR_DET.attribute_id IN (" . $attribute_ids . ")"
 
                 $query = $wpdb->prepare('SELECT id FROM ' . WPSHOP_DBT_ATTRIBUTE . ' WHERE code = %s AND entity_id = %d', 'is_provider', $entity_id);
                 $is_provider_id = $wpdb->get_var($query);
-                if (!isset($is_provider_id)) {
+                if ( false && ! isset( $is_provider_id ) ) {
                     $wpdb->insert(WPSHOP_DBT_ATTRIBUTE, array(
                         'is_visible_in_front' => 'no',
                         'is_visible_in_front_listing' => 'yes',

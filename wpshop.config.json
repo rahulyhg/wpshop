@@ -6,5 +6,8 @@
 		"core/external/wpeo_log/wpeo_log.config.json",
 		"core/external/wpeo_model/wpeo_model.config.json"
 	],
+	"modules": [
+		"includes/modules/wps-user/wps-user.config.json"
+	],
 	"debug": false
 }

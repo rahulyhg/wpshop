@@ -34,6 +34,7 @@ class wps_orders_in_back_office {
 		if( ! in_array( $current_screen->post_type, array( WPSHOP_NEWTYPE_IDENTIFIER_ORDER ), true ) )
 			return;
 
+
 		wp_enqueue_style( 'wps_orders_backend', WPS_ORDERS_URL . WPS_ORDERS_DIR . '/assets/backend/css/wps_orders.backend.css' );
 		wp_enqueue_script( 'wps_orders_backend', WPS_ORDERS_URL . WPS_ORDERS_DIR . '/assets/backend/js/wps_orders.js' );
 	}

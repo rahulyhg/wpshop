@@ -1,0 +1,12 @@
+{
+	"name": "Users",
+	"slug": "wps-user",
+	"version": "1.4.4.5",
+	"description": "Module for user management",
+	"path": "includes/modules/wps-user",
+	"dependencies": {
+		"class": {},
+		"shortcode": {},
+		"action": {}
+	}
+}

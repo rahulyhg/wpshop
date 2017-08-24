@@ -1,9 +1,6 @@
 <?php if ( !defined( 'ABSPATH' ) ) exit;
- if ( !$force_login ) : ?>
-<?php echo do_shortcode( '[wps_first_login]' ); ?>
+global $post; ?>
 
-<?php endif; ?>
-<?php global $post; ?>
 <div class="wps-boxed" id="wps_login_form_container">
 	<span class="wps-h5"><?php _e ('Log in', 'wpshop'); ?></span>
 	<div class="wp-form-group wps-welcome_back_message" id="welcome_back_message">

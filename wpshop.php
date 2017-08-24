@@ -53,11 +53,10 @@ load_plugin_textdomain( 'wpshop', false, dirname( plugin_basename( __FILE__ ) ) 
 /**    Include the config file    */
 require WP_PLUGIN_DIR . '/' . WPSHOP_PLUGIN_DIR . '/includes/config.php';
 
-/** Allow to get errors back when debug mode is set to true    */
-if ( WPSHOP_DEBUG_MODE && (in_array( long2ip( ip2long( $_SERVER['REMOTE_ADDR'] ) ), unserialize( WPSHOP_DEBUG_MODE_ALLOWED_IP ) )) ) {
-	ini_set( 'display_errors', true );
-	error_reporting( E_ALL );
-}
+require_once 'core/external/wpeo_util/singleton.util.php';
+require_once 'core/external/wpeo_util/init.util.php';
+require_once 'core/external/wpeo_log/class/log.class.php';
+\eoxia\Init_util::g()->exec( realpath( plugin_dir_path( __FILE__ ) ) . '/', basename( __FILE__, '.php' ) );
 
 include_once WPSHOP_LIBRAIRIES_DIR . 'init.class.php';
 $current_installation_step = get_option( 'wps-installation-current-step', 1 );
@@ -102,12 +101,13 @@ if ( (defined( 'WPSINSTALLER_STEPS_COUNT' ) && (WPSINSTALLER_STEPS_COUNT <= $cur
 		add_action( 'admin_init', array( 'wpshop_install', 'update_wpshop_dev' ) );
 	}
 }
-// Start session
+
+// Start session.
 if ( session_id() == '' ) {
 	 session_start();
 }
 
-// WP-Shop class instanciation
+// WP-Shop class instanciation.
 function classes_init() {
 	global $wpshop_cart, $wpshop, $wpshop_account, $wpshop_payment;
 	$wpshop = new wpshop_form_management();
@@ -134,8 +134,3 @@ add_shortcode( 'wpshop_payment_result_unsuccessfull', array( 'wpshop_payment', '
 add_shortcode( 'wpshop_variations', array( 'wpshop_products', 'wpshop_variation' ) );
 add_shortcode( 'wpshop_entities', array( 'wpshop_entities', 'wpshop_entities_shortcode' ) );
 add_shortcode( 'wpshop_attributes', array( 'wpshop_attributes', 'wpshop_attributes_shortcode' ) );
-
-require_once 'core/external/wpeo_util/singleton.util.php';
-require_once 'core/external/wpeo_util/init.util.php';
-require_once 'core/external/wpeo_log/class/log.class.php';
-\eoxia\Init_util::g()->exec( realpath( plugin_dir_path( __FILE__ ) ) . '/', basename( __FILE__, '.php' ) );

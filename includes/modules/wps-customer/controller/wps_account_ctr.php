@@ -58,33 +58,39 @@ class wps_account_ctr {
 	 * Add scripts
 	 */
 	function add_scripts() {
-		wp_enqueue_script('jquery');
-		wp_enqueue_script( 'wps_forgot_password_js', WPS_ACCOUNT_URL.'wps_customer/assets/frontend/js/wps_forgot_password.js' );
-		wp_enqueue_script( 'wps_login_js', WPS_ACCOUNT_URL.'wps_customer/assets/frontend/js/wps_login.js' );
-		wp_enqueue_script( 'wps_signup_js', WPS_ACCOUNT_URL.'wps_customer/assets/frontend/js/wps_signup.js' );
-		wp_enqueue_script( 'wps_account_js', WPS_ACCOUNT_URL.'wps_customer/assets/frontend/js/wps_account.js' );
-		wp_enqueue_style( 'wps_account_css', WPS_ACCOUNT_URL.'wps_customer/assets/frontend/css/frontend.css' );
+		wp_enqueue_script( 'jquery' );
+		wp_enqueue_script( 'wps_forgot_password_js', WPS_ACCOUNT_URL . WPS_ACCOUNT_DIR . '/assets/frontend/js/wps_forgot_password.js' );
+		wp_enqueue_script( 'wps_login_js', WPS_ACCOUNT_URL . WPS_ACCOUNT_DIR . '/assets/frontend/js/wps_login.js' );
+		wp_enqueue_script( 'wps_signup_js', WPS_ACCOUNT_URL . WPS_ACCOUNT_DIR . '/assets/frontend/js/wps_signup.js' );
+		wp_enqueue_script( 'wps_account_js', WPS_ACCOUNT_URL . WPS_ACCOUNT_DIR . '/assets/frontend/js/wps_account.js' );
+		wp_enqueue_style( 'wps_account_css', WPS_ACCOUNT_URL . WPS_ACCOUNT_DIR . '/assets/frontend/css/frontend.css' );
 	}
 
-	/** LOG IN - Display log in Form **/
-	function get_login_form( $force_login = false ) {
+	/**
+	 * Display login/signup Form
+	 *
+	 * @param  boolean $force_login Allows to define if only login form must be displayed or if signup form can also be displayed.
+	 *
+	 * @return string               Html output for signin and signup form display.
+	 */
+	function get_login_form( $force_login = true ) {
 		$args = array();
-		if ( get_current_user_id() != 0 ) {
-			return __( 'You are already logged', 'wpshop');
-		}
-		else {
-			$action = !empty( $_GET['action'] ) ? sanitize_text_field( $_GET['action'] ) : '';
-			$key = !empty( $_GET['key'] ) ? sanitize_text_field( $_GET['key'] ) : '';
-			$login = !empty( $_GET['login'] ) ? sanitize_text_field( $_GET['login'] ) : 0;
-			if ( !empty($action) && $action == 'retrieve_password' && !empty($key) && !empty($login) && !$force_login ) {
+
+		if ( get_current_user_id() !== 0 ) {
+			return __( 'You are already logged', 'wpshop' );
+		} else {
+			$action = ! empty( $_GET['action'] ) ? sanitize_text_field( $_GET['action'] ) : '';
+			$key = ! empty( $_GET['key'] ) ? sanitize_text_field( $_GET['key'] ) : '';
+			$login = ! empty( $_GET['login'] ) ? sanitize_text_field( $_GET['login'] ) : 0;
+			if ( ! empty( $action ) && ( 'retrieve_password' === $action ) && ! empty( $key ) && ! empty( $login ) && ! $force_login ) {
 				$output = self::get_renew_password_form();
-			}
-			else {
+			} else {
 				ob_start();
-				require_once( wpshop_tools::get_template_part( WPS_ACCOUNT_DIR, WPS_ACCOUNT_TPL,  "frontend", "login/login-form") );
+				require_once( wpshop_tools::get_template_part( WPS_ACCOUNT_DIR, WPS_ACCOUNT_TPL, 'frontend', 'login/login-form' ) );
 				$output = ob_get_contents();
 				ob_end_clean();
-				if ( !$force_login ) {
+
+				if ( ! $force_login ) {
 					$output .= do_shortcode( '[wps_signup]' );
 				}
 			}

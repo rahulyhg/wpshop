@@ -283,8 +283,8 @@ class wps_message_ctr {
 		$wps_message_mdl = new wps_message_mdl();
 		$messages_data = $wps_message_mdl->get_messages_histo( $message_id, $customer_id );
 
-		$wps_customers_contacts = new WPS_Customers_Contacts();
-		$contact_list = $wps_customers_contacts->get_customer_contact_list( get_post( $customer_id ) );
+		$WPS_Customers_Contacts_Action = new WPS_Customers_Contacts_Action();
+		$contact_list = $WPS_Customers_Contacts_Action->get_customer_contact_list( get_post( $customer_id ) );
 		$customer_email_contact_list = array();
 		foreach ( $contact_list as $contact ) {
 			$customer_email_contact_list[] = $contact['user_email'];

@@ -49,12 +49,8 @@ class WPS_Customer_Metaboxes_Controller extends wps_customer_ctr {
 	 */
 	function add_meta_box_order( $order ) {
 		/**	Box with order customer information	*/
-		$metabox_title_button = '';
-		$order_metadata = get_post_meta( $order->ID, '_order_postmeta', true );
-		if ( empty( $order_metadata ) || ( ! empty( $order_metadata['order_status'] ) && ( 'awaiting_payment' === $order_metadata['order_status'] ) ) ) {
-			$metabox_title_button = '<a href="' . wp_nonce_url( admin_url( 'admin-ajax.php?action=wps_load_customer_creation_form_in_admin&width=730&height=690' ), 'wps_load_customer_creation_form_in_admin', '_wpnonce' ) . '" title="' . __( 'Create a customer', 'wpshop' ) . '" class="page-title-action thickbox" >' . __( 'Create a customer', 'wpshop' ) . '</a>';
-		}
-		add_meta_box( 'wpshop_order_customer_information_box', '<span class="dashicons dashicons-businessman"></span> ' . __( 'Customer information', 'wpshop' ) . $metabox_title_button, array( $this, 'display_order_customer_informations_in_administration' ), WPSHOP_NEWTYPE_IDENTIFIER_ORDER, 'normal', 'high' );
+
+		add_meta_box( 'wpshop_order_customer_information_box', '<span class="dashicons dashicons-businessman"></span> ' . __( 'Customer information', 'wpshop' ), array( $this, 'display_order_customer_informations_in_administration' ), WPSHOP_NEWTYPE_IDENTIFIER_ORDER, 'normal', 'high' );
 	}
 
 	/**
@@ -125,6 +121,14 @@ class WPS_Customer_Metaboxes_Controller extends wps_customer_ctr {
 	 * @param WP_Post $post L'objet WP_Post correspond à la commande / The WP_Post object corresponding to the order.
 	 */
 	function display_order_customer_informations_in_administration( $post ) {
+		add_thickbox();
+
+		$metabox_title_button = '';
+		$order_metadata = get_post_meta( $post->ID, '_order_postmeta', true );
+		if ( empty( $order_metadata ) || ( ! empty( $order_metadata['order_status'] ) && ( 'awaiting_payment' === $order_metadata['order_status'] ) ) ) {
+			echo '<a href="' . wp_nonce_url( admin_url( 'admin-ajax.php?action=wps_load_customer_creation_form_in_admin&width=730&height=690&TB_iframe=true' ), 'wps_load_customer_creation_form_in_admin', '_wpnonce' ) . '" title="' . __( 'Create a customer', 'wpshop' ) . '" class="thickbox" >' . __( 'Create a customer', 'wpshop' ) . '</a>';
+		}
+
 		// N'afficher la metabox uniquement dans les commandes / Only display metabox in orders.
 		if ( ! empty( $post ) && ( WPSHOP_NEWTYPE_IDENTIFIER_ORDER === $post->post_type ) ) {
 			$post_id = $post->ID;

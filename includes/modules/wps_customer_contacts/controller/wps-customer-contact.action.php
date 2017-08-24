@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Initialise les scripts JS et CSS du Plugin
  * Ainsi que le fichier MO
  */
-class WPS_Customers_Contacts {
+class WPS_Customers_Contacts_Action {
 
 	/**
 	 * Définition de la clé permettant de retrouver la liste des contacts du clients actuel / Define the meta key allowing to get the contact list for current customer.
@@ -30,9 +30,6 @@ class WPS_Customers_Contacts {
 	 */
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
-
-		// Appel du filtre permettant d'ajouter des informations dans la liste des méthodes de contacts dans les profil utilisateur.
-		add_filter( 'user_contactmethods', array( $this, 'add_contact_method_to_user' ), 20, 2 );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'callback_admin_enqueue_scripts' ), 11 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'callback_enqueue_scripts' ), 11 );
@@ -112,7 +109,6 @@ class WPS_Customers_Contacts {
 	 *
 	 * @return [type]           [description]
 	 */
-
 	function get_customer_contact_list( $customer ) {
 		/** Define user list */
 		$users = array();
@@ -186,20 +182,6 @@ class WPS_Customers_Contacts {
 			/** Display user list for current customer */
 			require_once( wpshop_tools::get_template_part( WPS_CUST_CONTACT_DIR, WPS_CUST_CONTACT_TPL, 'frontend', 'customer', 'choice' ) );
 		}
-	}
-
-	/**
-	 * Filtre la liste des méthodes de contact de WordPress pour ajouter le numéro de téléphone / Filter WordPress default contact method list in order to add phone numbre.
-	 *
-	 * @param array   $contact_methods La liste actuelle des méthodes permettant de contacter l'utilisateur / The current method list to contact a user.
-	 * @param WP_user $user          L'utilisateur en court d'édition / The current edited user.
-	 */
-	public function add_contact_method_to_user( $contact_methods, $user ) {
-		$wps_contact_method = array(
-			'wps_phone'	=> __( 'Phone number', 'wpshop' ),
-		);
-
-		return array_merge( $wps_contact_method, $contact_methods );
 	}
 
 	/**
@@ -291,4 +273,4 @@ class WPS_Customers_Contacts {
 
 }
 
-new WPS_Customers_Contacts();
+new WPS_Customers_Contacts_Action();

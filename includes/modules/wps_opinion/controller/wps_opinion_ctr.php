@@ -19,12 +19,35 @@ class wps_opinion_ctr {
 		add_shortcode( 'wps_opinion_product', array( $this, 'display_opinion_in_product') );
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
 
+		add_filter( 'wps_filter_account_dashboard_part_list', array( $this, 'add_opinion_tab_to_customer_account' ) );
+		add_filter( 'wps_my_account_extra_panel_content', array( $this, 'add_opinion_content_to_customer_account' ), 10, 3);
+
 		/** Ajax actions **/
 		add_action( 'wp_ajax_wps-opinion-save-form', array( $this, 'wps_opinion_save_form') );
 		add_action( 'wp_ajax_nopriv_wps-opinion-save-form', array( $this, 'wps_opinion_save_form') );
 		add_action( 'wp_ajax_wps-update-opinion-star-rate', array( $this, 'wps_update_opinion_star_rate') );
 		add_action( 'wp_ajax_wps-refresh-add-opinion-list', array( $this, 'wps_refresh_add_opinion_list') );
 		add_action( 'wp_ajax_wps_fill_opinion_modal', array( $this, 'wps_fill_opinion_modal') );
+	}
+
+	function add_opinion_tab_to_customer_account( $default_dashboard_part_list ) {
+		$opinion_option = get_option( 'wps_opinion' );
+		if ( ! empty( $opinion_option ) && ! empty( $opinion_option['active'] ) ) {
+			$default_dashboard_part_list['opinion'] = array(
+				'title'	=> __( 'Opinions', 'wpshop' ),
+				'icon'	=> 'wps-icon-chat',
+			);
+		}
+
+		return $default_dashboard_part_list;
+	}
+
+	function add_opinion_content_to_customer_account( $output, $part, $current_customer_id ) {
+		if ( 'opinion' === $part ) {
+			return do_shortcode( '[wps_opinion cid="' . $current_customer_id . '" ]' );
+		} else {
+			return $output;
+		}
 	}
 
 	/**
