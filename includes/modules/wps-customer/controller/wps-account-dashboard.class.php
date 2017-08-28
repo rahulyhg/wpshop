@@ -36,22 +36,22 @@ class WPS_Account_Dashboard_Class {
 		if ( 0 === $current_connected_user_id ) {
 			$output = do_shortcode( '[wpshop_authentification]' );
 		} else {
-			$part = ( ! empty( $_GET['account_dashboard_part'] ) ) ? sanitize_title( $_GET['account_dashboard_part'] ) : 'account';
+			$part = ( ! empty( $_GET['account_dashboard_part'] ) ) ? sanitize_title( $_GET['account_dashboard_part'] ) : '';
 			$permalink_option = get_option( 'permalink_structure' );
 			$account_page_id = wpshop_tools::get_page_id( get_option( 'wpshop_myaccount_page_id' ) );
 
 			$default_dashboard_part_list = array(
+				'order' => array(
+					'title'	=> __( 'Orders', 'wpshop' ),
+					'icon'	=> 'wps-icon-truck',
+				),
 				'account' => array(
 					'title'	=> __( 'Account', 'wpshop' ),
 					'icon'	=> 'wps-icon-user',
 				),
 				'address' => array(
 					'title'	=> __( 'Addresses', 'wpshop' ),
-					'icon'	=> 'wps-icon-user',
-				),
-				'order' => array(
-					'title'	=> __( 'Orders', 'wpshop' ),
-					'icon'	=> 'wps-icon-truck',
+					'icon'	=> 'wps-icon-address',
 				),
 				'coupon' => array(
 					'title'	=> __( 'Coupons', 'wpshop' ),
@@ -87,10 +87,7 @@ class WPS_Account_Dashboard_Class {
 
 		switch ( $part ) {
 			case 'account':
-				$output  = '<div id="wps_account_informations_container" data-nonce="' . esc_attr( wp_create_nonce( 'wps_account_reload_informations' ) ) . '" >';
-				$output .= do_shortcode( '[wps_account_informations cid="' . $current_customer_id . '" ]' );
-				$output .= '</div>';
-				$output .= do_shortcode( '[wps_orders_in_customer_account cid="' . $current_customer_id . '" ]' );
+				$output  = do_shortcode( '[wps_account_form cid="' . $current_customer_id . '" ]' );
 			break;
 			case 'address':
 				$output .= do_shortcode( '[wps_addresses cid="' . $current_customer_id . '" ]' );

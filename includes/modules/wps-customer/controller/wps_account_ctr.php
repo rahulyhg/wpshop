@@ -7,10 +7,6 @@ class wps_account_ctr {
 
 	function __construct() {
 		/** Shortcodes **/
-		// Sign up Display Shortcode
-		add_shortcode( 'wps_signup', array( &$this, 'display_signup' ) );
-		// Log in Form Display Shortcode
-		add_shortcode( 'wpshop_login', array( &$this, 'get_login_form'));
 		//Log in first step
 		add_shortcode( 'wps_first_login', array( &$this, 'get_login_first_step'));
 		// Forgot password Form
@@ -19,16 +15,8 @@ class wps_account_ctr {
 		add_shortcode( 'wps_renew_password', array( &$this, 'get_renew_password_form'));
 		//Account informations
 		add_shortcode( 'wps_account_informations', array($this, 'shortcode_callback_display_account_informations') );
-		//Account form
-		add_shortcode( 'wps_account_informations_form', array($this, 'account_informations_form') );
 
 		/** Ajax Actions **/
-		// add_action('wap_ajax_wps_display_connexion_form', array(&$this, 'wps_ajax_get_login_form_interface') );
-		// add_action('wap_ajax_nopriv_wps_display_connexion_form', array(&$this, 'wps_ajax_get_login_form_interface') );
-
-		add_action('wp_ajax_wps_login_request', array(&$this, 'control_login_form_request') );
-		add_action('wp_ajax_nopriv_wps_login_request', array(&$this, 'control_login_form_request') );
-
 		add_action('wp_ajax_wps_forgot_password_request', array(&$this, 'wps_forgot_password_request') );
 		add_action('wp_ajax_nopriv_wps_forgot_password_request', array(&$this, 'wps_forgot_password_request') );
 
@@ -64,91 +52,6 @@ class wps_account_ctr {
 		wp_enqueue_script( 'wps_signup_js', WPS_ACCOUNT_URL . WPS_ACCOUNT_DIR . '/assets/frontend/js/wps_signup.js' );
 		wp_enqueue_script( 'wps_account_js', WPS_ACCOUNT_URL . WPS_ACCOUNT_DIR . '/assets/frontend/js/wps_account.js' );
 		wp_enqueue_style( 'wps_account_css', WPS_ACCOUNT_URL . WPS_ACCOUNT_DIR . '/assets/frontend/css/frontend.css' );
-	}
-
-	/**
-	 * Display login/signup Form
-	 *
-	 * @param  boolean $force_login Allows to define if only login form must be displayed or if signup form can also be displayed.
-	 *
-	 * @return string               Html output for signin and signup form display.
-	 */
-	function get_login_form( $force_login = true ) {
-		$args = array();
-
-		if ( get_current_user_id() !== 0 ) {
-			return __( 'You are already logged', 'wpshop' );
-		} else {
-			$action = ! empty( $_GET['action'] ) ? sanitize_text_field( $_GET['action'] ) : '';
-			$key = ! empty( $_GET['key'] ) ? sanitize_text_field( $_GET['key'] ) : '';
-			$login = ! empty( $_GET['login'] ) ? sanitize_text_field( $_GET['login'] ) : 0;
-			if ( ! empty( $action ) && ( 'retrieve_password' === $action ) && ! empty( $key ) && ! empty( $login ) && ! $force_login ) {
-				$output = self::get_renew_password_form();
-			} else {
-				ob_start();
-				require_once( wpshop_tools::get_template_part( WPS_ACCOUNT_DIR, WPS_ACCOUNT_TPL, 'frontend', 'login/login-form' ) );
-				$output = ob_get_contents();
-				ob_end_clean();
-
-				if ( ! $force_login ) {
-					$output .= do_shortcode( '[wps_signup]' );
-				}
-			}
-			return $output;
-		}
-	}
-
-	/** LOG IN - AJAX - Action to connect **/
-	function control_login_form_request() {
-
-		$_wpnonce = !empty( $_POST['_wpnonce'] ) ? sanitize_text_field( $_POST['_wpnonce'] ) : '';
-
-		if ( !wp_verify_nonce( $_wpnonce, 'control_login_form_request' ) )
-			wp_die();
-
-		$result = '';
-		$status = false;
-		$origin = sanitize_text_field( $_POST['wps-checking-origin'] );
-		$wps_login_user_login = !empty( $_POST['wps_login_user_login'] ) ? sanitize_text_field( $_POST['wps_login_user_login' ] ) : '';
-		$wps_login_password = !empty( $_POST['wps_login_password'] ) ? sanitize_text_field( $_POST['wps_login_password' ] ) : '';
-		$page_account_id = wpshop_tools::get_page_id( get_option( 'wpshop_myaccount_page_id') );
-		if ( !empty($wps_login_user_login) && !empty($wps_login_password) ) {
-			$creds = array();
-			// Test if an user exist with this login
-			$user_checking = get_user_by( 'login', $wps_login_user_login );
-			if( !empty($user_checking) ) {
-				$creds['user_login'] = $wps_login_user_login;
-			}
-			else {
-				if ( is_email($wps_login_user_login) ) {
-					$user_checking = get_user_by( 'email', $wps_login_user_login );
-					$creds['user_login'] = $user_checking->user_login;
-				}
-			}
-			$creds['user_password'] = wpshop_tools::varSanitizer( $_POST['wps_login_password'] );
-			$creds['remember'] =  !empty( $_POST['wps_login_remember_me'] ) ? (int) $_POST['wps_login_remember_me'] : false;
-			$user = wp_signon( $creds, false );
-			if ( is_wp_error($user) ) {
-				$result = '<div class="wps-alert-error">' .__('Connexion error', 'wpshop'). '</div>';
-			}
-			else {
-				$permalink_option = get_option( 'permalink_structure' );
-				$checkout_page_id = wpshop_tools::get_page_id( get_option( 'wpshop_checkout_page_id' ) );
-				if( $origin == $page_account_id ) {
-					$result = get_permalink( $page_account_id );
-				}
-				else {
-					$result = get_permalink( $checkout_page_id  ).( ( !empty($permalink_option) ) ? '?' : '&').'order_step=3';
-				}
-				$status = true;
-			}
-		}
-		else {
-			$result = '<div class="wps-alert-error">' .__('E-Mail and Password are required', 'wpshop'). '</div>';
-		}
-
-		echo json_encode( array( $status, $result) );
-		die();
 	}
 
 	/**
@@ -384,39 +287,6 @@ class wps_account_ctr {
 		die();
 	}
 
-	/**
-	 * SIGN UP - Display Sign up form
-	 * @return string
-	 */
-	function display_signup( $args = array() ) {
-		global $wpdb;
-		$output = '';
-		if ( get_current_user_id() == 0 || !empty($args) ) {
-			$fields_to_output = $signup_fields = array();
-
-			$password_attribute = $signup_form_attributes =  array();
-
-			$entity_id = wpshop_entities::get_entity_identifier_from_code( WPSHOP_NEWTYPE_IDENTIFIER_CUSTOMERS );
-
-			$query = $wpdb->prepare('SELECT id FROM '.WPSHOP_DBT_ATTRIBUTE_SET.' WHERE entity_id = %d', $entity_id);
-			$customer_entity_id = $wpdb->get_var( $query );
-			$attributes_set = wpshop_attributes_set::getElement($customer_entity_id);
-			$account_attributes = wpshop_attributes_set::getAttributeSetDetails( ( !empty($attributes_set->id) ) ? $attributes_set->id : '', "'valid'");
-			$query = $wpdb->prepare('SELECT id FROM '.WPSHOP_DBT_ATTRIBUTE_GROUP.' WHERE attribute_set_id = %d AND status = %s', $attributes_set->id, 'valid' );
-			$customer_attributes_sections = $wpdb->get_results( $query );
-			foreach( $customer_attributes_sections as $k => $customer_attributes_section ) {
-				foreach( $account_attributes[$customer_attributes_section->id]['attribut'] as $attribute ) {
-					$signup_fields[] = $attribute;
-				}
-			}
-			ob_start();
-			require( wpshop_tools::get_template_part( WPS_ACCOUNT_DIR, WPS_ACCOUNT_TPL, "frontend", "signup/signup") );
-			$output = ob_get_contents();
-			ob_end_clean();
-		}
-		return $output;
-	}
-
 	function wps_save_signup_form_nopriv() {
 		$this->wps_save_signup_form( true );
 	}
@@ -542,20 +412,7 @@ class wps_account_ctr {
 		wp_die( json_encode( array( $status, $result, $user_id ) ) );
 	}
 
-	/** SIGN UP - Display the commercial & newsletter form
-	 * @return void
-	 */
-	function display_commercial_newsletter_form() {
-		$output = '';
-		$user_preferences = get_user_meta( get_current_user_id(), 'user_preferences', true );
-		$wpshop_cart_option = get_option( 'wpshop_cart_option' );
-		ob_start();
-		require_once( wpshop_tools::get_template_part( WPS_ACCOUNT_DIR, WPS_ACCOUNT_TPL,  "frontend", "signup/signup", "newsletter") );
-		$output = ob_get_contents();
-		ob_end_clean();
 
-		return $output;
-	}
 
 	/**
 	 * Affichage du shortcode générant le compte client

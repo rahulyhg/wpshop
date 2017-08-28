@@ -340,15 +340,15 @@ a[class*="wps-"][class*="-block"] {
 	&[class*="first"], &[class*="second"]{
 		border:none;
 	}
-	&[class*="first"]{		
+	&[class*="first"]{
 		.box-shadow(none);
-		border: none;		
+		border: none;
 	}
 	&[class*="second"]{
 		.box-shadow(none);
-		border:none;		
+		border:none;
 	}
-	> span {		
+	> span {
 		position: relative;
 		margin-left:-.6em;
 		margin-right: 1.4em;
@@ -356,17 +356,17 @@ a[class*="wps-"][class*="-block"] {
 		padding-right: .2em;
 		display: inline-block;
 		line-height: 2em;
-		border-top-left-radius: 4px;		
-		border-bottom-left-radius: 4px;		
+		border-top-left-radius: 4px;
+		border-bottom-left-radius: 4px;
 		&::after {
 			content:'';
 			position: absolute;
 			right:0;
 			top:50%;
-			width: 0; 
-			height: 0; 
+			width: 0;
+			height: 0;
 			border-top: 2em solid transparent;
-			border-bottom: 2em solid transparent;			
+			border-bottom: 2em solid transparent;
 			.translate(100%,-50%);
 		}
 	}
@@ -692,7 +692,7 @@ a[class*="wps-"][class*="-block"] {
   }
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
   [class*="wps-"][class*="filters"][class*="header"] {
@@ -721,7 +721,7 @@ a[class*="wps-"][class*="-block"] {
   }
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 800px) {
   .wps-single {
@@ -734,10 +734,10 @@ a[class*="wps-"][class*="-block"] {
   }
 }
 @media (max-width: 500px) {
-  
+
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
   /*[class*="wps"][class*="mosaicwrapper"] {
@@ -748,19 +748,19 @@ a[class*="wps-"][class*="-block"] {
   		}*/
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 800px) {
-  
+
 }
 @media (max-width: 500px) {
-  
+
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
   [class*="wps-"][class*="step"][class*="checkout"] {
@@ -768,7 +768,7 @@ a[class*="wps-"][class*="-block"] {
   }
 }
 @media (max-width: 800px) {
-  
+
 }
 @media (max-width: 500px) {
   /*[class*="wps-"][class*="step"][class*="checkout"]{
@@ -1773,7 +1773,7 @@ input[type=radio]:checked::before {
   [class*="wps"][class*="filter"] [class*="wps"][class*="body"] [class*="wps"][class*="filter-group"] {
     /*float: left;
   			width:50%;*/
-  
+
   }
 }
 @media (max-width: 1100px) {
@@ -1930,10 +1930,10 @@ input[type=radio]:checked::before {
   }
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
   .wps-itemList::after {
@@ -1986,7 +1986,7 @@ input[type=radio]:checked::before {
   }
 }
 @media (max-width: 800px) {
-  
+
 }
 @media (max-width: 500px) {
   .wps-itemList {
@@ -2631,7 +2631,7 @@ input[type=radio]:checked::before {
         -moz-transform: rotateY(180deg);
         -o-transform: rotateY(180deg);
         -ms-transform: rotateY(180deg);
-        transform: rotateY(180deg);       
+        transform: rotateY(180deg);
     }
 }*/
 /* BoxPlusUn */
@@ -2791,7 +2791,7 @@ input[type=radio]:checked::before {
 }
 #wps-product-galery {
   /*.cls();
-	padding:0 10px;	
+	padding:0 10px;
 	ul {
 		padding:0 @p/2 0 @p/2;
 		margin:0;
@@ -2800,13 +2800,13 @@ input[type=radio]:checked::before {
 		font-size:0;
 		margin-bottom:@p;
 		a {
-			display:block;	
+			display:block;
 		}
-		a:hover img {			
+		a:hover img {
 		}
 	}
 	img {
-		max-width:100%;		
+		max-width:100%;
 	}	*/
 
 }
@@ -3206,7 +3206,7 @@ p {
   }
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
   [class*="wps-"][class*="filters"][class*="header"] {
@@ -3235,7 +3235,7 @@ p {
   }
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 800px) {
   .wps-single {
@@ -3248,10 +3248,10 @@ p {
   }
 }
 @media (max-width: 500px) {
-  
+
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
   /*[class*="wps"][class*="mosaicwrapper"] {
@@ -3262,19 +3262,19 @@ p {
   		}*/
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 800px) {
-  
+
 }
 @media (max-width: 500px) {
-  
+
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
   [class*="wps-"][class*="step"][class*="checkout"] {
@@ -3282,7 +3282,7 @@ p {
   }
 }
 @media (max-width: 800px) {
-  
+
 }
 @media (max-width: 500px) {
   /*[class*="wps-"][class*="step"][class*="checkout"]{
@@ -4114,7 +4114,7 @@ p {
   }
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
   [class*="wps-"][class*="filters"][class*="header"] {
@@ -4143,7 +4143,7 @@ p {
   }
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 800px) {
   .wps-single {
@@ -4156,10 +4156,10 @@ p {
   }
 }
 @media (max-width: 500px) {
-  
+
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
   /*[class*="wps"][class*="mosaicwrapper"] {
@@ -4170,19 +4170,19 @@ p {
   		}*/
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 800px) {
-  
+
 }
 @media (max-width: 500px) {
-  
+
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
   [class*="wps-"][class*="step"][class*="checkout"] {
@@ -4190,7 +4190,7 @@ p {
   }
 }
 @media (max-width: 800px) {
-  
+
 }
 @media (max-width: 500px) {
   /*[class*="wps-"][class*="step"][class*="checkout"]{
@@ -4219,6 +4219,7 @@ p {
 [class*="wps-alert"] [class*="wps-h5"],
 [class*="wps-alert"] [class*="wps-h6"] {
   margin-top: 0;
+	text-transform: capitalize;
 }
 [class*="wps-alert"] [class*="wps-bton-icon-close"] {
   float: right;
@@ -4876,7 +4877,7 @@ p {
 .wps-body-overlay {
 	.perspective(1500px);
 	.wps-wrapper {
-		
+
 		-webkit-transform: translate3d(-300px, 0, 0);
 		transform: translate3d(-300px, 0, 0);
 	}
@@ -4921,12 +4922,12 @@ p {
 		z-index:99999;
 		.opacity(1);
 		visibility: visible;
-		.transition(all,0.4s);		
+		.transition(all,0.4s);
 		-webkit-transform: rotateY(0) scale(1) translate(-50%,-50%);
 		-moz-transform: rotateY(0) scale(1) translate(-50%,-50%);
 		-o-transform: rotateY(0) scale(1) translate(-50%,-50%);
 		-ms-transform: rotateY(0) scale(1) translate(-50%,-50%);
-		transform: rotateY(0) scale(1) translate(-50%,-50%);		
+		transform: rotateY(0) scale(1) translate(-50%,-50%);
 	}*/
 
 }
@@ -5147,13 +5148,13 @@ p {
 
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 800px) {
   .wps-section-content {
@@ -5261,7 +5262,7 @@ p {
 		}
 	}
 	.wps-mini-cart-body {
-		padding:0 20px;		
+		padding:0 20px;
 	}
 
 }*/
@@ -5681,7 +5682,7 @@ p {
 				font-family: "fontello";
 				position: absolute;
 				top: 0;
-				right: 18px;			
+				right: 18px;
 				font-size:1em;
 			}*/
 
@@ -5702,7 +5703,7 @@ p {
 				font-family: "fontello";
 				position: absolute;
 				top: 0;
-				right: 18px;			
+				right: 18px;
 				font-size:1em;
 			}*/
 
@@ -5782,10 +5783,10 @@ p {
 @media  (max-width: @mq3) {
 	[class*="wps-"][class*="step"][class*="checkout"]{
 		.smallerFont(50%);
-	}	
+	}
 }
 @media  (max-width: @mq4) {
-	
+
 }
 @media  (max-width: @mq5) {
 	[class*="wps-"][class*="step"][class*="checkout"]{
@@ -5873,7 +5874,7 @@ p {
   }
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
   [class*="wps-"][class*="filters"][class*="header"] {
@@ -5902,7 +5903,7 @@ p {
   }
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 800px) {
   .wps-single {
@@ -5915,10 +5916,10 @@ p {
   }
 }
 @media (max-width: 500px) {
-  
+
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
   /*[class*="wps"][class*="mosaicwrapper"] {
@@ -5929,19 +5930,19 @@ p {
   		}*/
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 800px) {
-  
+
 }
 @media (max-width: 500px) {
-  
+
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
   [class*="wps-"][class*="step"][class*="checkout"] {
@@ -5949,7 +5950,7 @@ p {
   }
 }
 @media (max-width: 800px) {
-  
+
 }
 @media (max-width: 500px) {
   /*[class*="wps-"][class*="step"][class*="checkout"]{
@@ -6045,7 +6046,7 @@ p {
   [class*="wps"][class*="filter"] [class*="wps"][class*="body"] [class*="wps"][class*="filter-group"] {
     /*float: left;
   			width:50%;*/
-  
+
   }
 }
 @media (max-width: 1100px) {
@@ -6202,10 +6203,10 @@ p {
   }
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
-  
+
 }
 @media (max-width: 1100px) {
   .wps-itemList::after {
@@ -6258,7 +6259,7 @@ p {
   }
 }
 @media (max-width: 800px) {
-  
+
 }
 @media (max-width: 500px) {
   .wps-itemList {

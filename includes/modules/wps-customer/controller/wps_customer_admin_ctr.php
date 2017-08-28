@@ -176,7 +176,7 @@ class wps_customer_admin {
 	 * AJAX - Customer creation form
 	 */
 	function wps_load_customer_creation_form_in_admin() {
-		check_ajax_referer( 'wps_load_customer_creation_form_in_admin' );
+		// check_ajax_referer( 'wps_load_customer_creation_form_in_admin' );
 
 		echo do_shortcode( '[wps_signup display="admin"]' );
 		wp_die();

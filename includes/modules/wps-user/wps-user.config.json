@@ -5,8 +5,10 @@
 	"description": "Module for user management",
 	"path": "includes/modules/wps-user",
 	"dependencies": {
+		"model": {},
 		"class": {},
 		"shortcode": {},
-		"action": {}
+		"action": {},
+		"filter": {}
 	}
 }

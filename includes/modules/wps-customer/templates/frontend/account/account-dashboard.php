@@ -40,7 +40,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<ul>
 		<?php $i = 0; ?>
 		<?php foreach ( $dashboard_part_list as $slug => $dashboard_part ) : ?>
-			<li class="<?php echo ( empty( $part ) && ( 1 === $i ) || ( ! empty( $part ) && ( $slug === $part ) ) ? 'wps-activ' : '' ); ?>">
+			<?php $tab_is_activ = false; ?>
+			<?php if ( empty( $part ) && ( 0 === $i ) || ( ! empty( $part ) && ( $slug === $part ) ) ) : ?>
+				<?php $tab_is_activ = true; ?>
+				<?php $part = $slug; ?>
+			<?php endif; ?>
+			<li class="<?php echo ( empty( $part ) && ( 0 === $i ) || ( ! empty( $part ) && ( $slug === $part ) ) ? 'wps-activ' : '' ); ?>">
 				<a data-target="menu<?php echo esc_attr( $i ); ?>" href="<?php echo esc_url( get_permalink( $account_page_id ) . ( ( ! empty( $permalink_option ) ? '?' : '&' ) . 'account_dashboard_part=' . $slug ) ); ?>" title="" class="" >
 					<i class="<?php echo esc_attr( $dashboard_part['icon'] ); ?>"></i>
 					<span><?php echo esc_html( $dashboard_part['title'] ); ?></span>

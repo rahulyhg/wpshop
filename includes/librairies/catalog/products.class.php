@@ -908,7 +908,7 @@ class wpshop_products {
         }
 
         $query['post_status'] = 'publish';
-echo "<pre>"; print_r($query); echo "</pre>";
+
         $custom_query = new WP_Query($query);
 
         if ($custom_query->have_posts()) {

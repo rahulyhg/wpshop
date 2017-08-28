@@ -5,5 +5,9 @@
  * @package WPShop Users
  */
 
-?>
-<?php echo do_shortcode( '[wpshop_login]' ); ?>
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+echo do_shortcode( '[wps_login]' );
+echo do_shortcode( '[wps_signup type="quick"]' );

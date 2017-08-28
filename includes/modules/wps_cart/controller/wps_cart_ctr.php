@@ -18,8 +18,8 @@ class wps_cart {
 		add_shortcode( 'wps-numeration-cart', array( &$this, 'display_wps_numeration_cart' ) );
 		add_shortcode( 'wpshop-numeration-cart', array( &$this, 'display_wps_numeration_cart' ) );
 		/** Button add to cart */
-		add_shortcode( 'wpshop_button_add_to_cart', array( &$this, 'display_button_add_to_cart' ) );
 
+		add_shortcode( 'wpshop_button_add_to_cart', array( &$this, 'display_button_add_to_cart' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
 		add_action( 'init', array( $this, 'load_cart_from_db' ) );
 
@@ -903,7 +903,7 @@ class wps_cart {
 			}
 
 			ob_start();
-			require_once( wpshop_tools::get_template_part( WPS_CART_DIR, WPS_CART_TPL_DIR, 'frontend/cart', 'button', 'add-to-cart' ) );
+			require( wpshop_tools::get_template_part( WPS_CART_DIR, WPS_CART_TPL_DIR, 'frontend/cart', 'button', 'add-to-cart' ) );
 			$output = ob_get_clean();
 		}
 

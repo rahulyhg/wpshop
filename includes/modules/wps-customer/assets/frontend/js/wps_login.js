@@ -1,8 +1,5 @@
 jQuery(document).ready(function() {
 
-	// jQuery( '#wps_login_form_container' ).hide();
-	// jQuery( '#wps_signup_form_container' ).hide();
-
 	jQuery( document ).on( 'click', '#wps_login_button', function() {
 			jQuery( '#wps_login_button').addClass( 'wps-bton-loading' );
 			/** Ajax Form Address Save **/

@@ -19,10 +19,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WPS_User_Class extends \eoxia\User_Class {
 
 	/**
+	 * Le nom du modèle
+	 *
+	 * @var string
+	 */
+	protected $model_name 	= '\wpshop\WPS_User_Model';
+
+	/**
 	 * Instanciate the user
 	 */
 	protected function construct() { }
 
 }
-
-WPS_User_Class::g();

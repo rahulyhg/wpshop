@@ -1,13 +1,20 @@
 jQuery(document).ready(function() {
 	jQuery( '#wps_signup_error_container').hide();
-	
+
 	/** When press return in the form */
 	jQuery( '#wps_signup_form input' ).keyup( function(e) {
 		if( 13 === e.which ) {
 			jQuery( '#wps_signup_button' ).click();
 		}
 	});
-	
+
+	jQuery( 'form#wps_quick_signup_form' ).ajaxForm({
+		dataType: 'json',
+		beforeSubmit: function() {
+			jQuery( 'form#wps_quick_signup_form button' ).addClass( 'wps-bton-loading' );
+		}
+	});
+
 	jQuery( document ).on( 'click', '#wps_signup_button', function() {
 		jQuery('#wps_signup_form').ajaxForm({
 			dataType:  'json',
@@ -25,6 +32,6 @@ jQuery(document).ready(function() {
 	        	}
 
 	        },
-		}).submit();	
+		}).submit();
 	});
 });
