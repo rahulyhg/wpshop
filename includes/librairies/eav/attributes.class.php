@@ -1787,6 +1787,7 @@ ob_end_clean();
 		wpshop("#' . $input_def['id'] . '").datepicker("option", "navigationAsDateFormat", true);
 		wpshop("#' . $input_def['id'] . '").val("' . str_replace(" 00:00:00", "", $input_def['value']) . '");';
 
+		if ( is_array( $date_config ) && is_array( $date_config['field_options'] ) ) {
 			if ( !empty($date_config['field_options']['attribute_type_date_options_available_date_past_futur']) ) {
 				if ( !empty($date_config['field_options']['attribute_type_date_options_available_date_past_futur']['minDate'][0]) ) {
 					$field_script .= '
@@ -1797,9 +1798,10 @@ ob_end_clean();
 		wpshop("#' . $input_def['id'] . '").datepicker("option", "maxDate", "' . $date_config['field_options']['attribute_type_date_options_available_date_past_futur']['maxDate'][0] . '");';
 				}
 			}
+		}
 
 			$script_options = $script_options_params = array();
-			if ( !empty($date_config['field_options']['attribute_type_date_options_day_to_show']) ) {
+			if ( is_array( $date_config ) && is_array( $date_config['field_options'] ) && !empty($date_config['field_options']['attribute_type_date_options_day_to_show']) ) {
 				$day_to_show_list = '    ';
 				foreach ( $date_config['field_options']['attribute_type_date_options_day_to_show'] as $day_to_show ) {
 					$day_to_show_list .= '(date.getDay() == ' . $day_to_show . ') || ';
@@ -3285,5 +3287,3 @@ GROUP BY ATT.id, chosen_val", $element_id, $attribute_code);
 	}
 
 }
-
-?>

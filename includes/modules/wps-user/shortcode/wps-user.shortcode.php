@@ -8,6 +8,8 @@
  * @subpackage Action
  */
 
+namespace wpshop;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -33,7 +35,7 @@ class WPS_User_Shortcode {
 		add_shortcode( 'wps_signup', array( $this, 'signup_form' ) );
 
 		// Formulaire de création - édition de compte complet / Full account creation - edition.
-		add_shortcode( 'wps_account_form', array( $this, 'account_form' ) );
+		add_shortcode( 'wps_user_account_form', array( $this, 'account_form' ) );
 	}
 
 	/**

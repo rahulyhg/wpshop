@@ -7,6 +7,7 @@
 		"core/external/wpeo_model/wpeo_model.config.json"
 	],
 	"modules": [
+		"includes/modules/wps-customer/wps-customer.config.json",
 		"includes/modules/wps-user/wps-user.config.json"
 	],
 	"debug": false

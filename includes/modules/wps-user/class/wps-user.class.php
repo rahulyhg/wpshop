@@ -8,6 +8,8 @@
  * @subpackage Classes
  */
 
+namespace wpshop;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

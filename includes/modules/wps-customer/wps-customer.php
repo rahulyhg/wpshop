@@ -26,7 +26,7 @@ include( plugin_dir_path( __FILE__ ) . 'controller/wps_customer_ctr.php' );
 include( plugin_dir_path( __FILE__ ) . 'controller/wps-customer-metaboxes.controller.01.php' );
 include( plugin_dir_path( __FILE__ ) . 'controller/wps_account_ctr.php' );
 include( plugin_dir_path( __FILE__ ) . 'controller/wps-account-dashboard.class.php' );
-include( plugin_dir_path( __FILE__ ) . 'model/wps_customer_mdl.php' );
+// include( plugin_dir_path( __FILE__ ) . 'model/wps_customer_mdl.php' );
 include( plugin_dir_path( __FILE__ ) . 'controller/wps_customer_group.php' );
 // 	include( plugin_dir_path( __FILE__ ) . 'controller/customer_custom_list_table.class.php' );
 // 	include( plugin_dir_path( __FILE__ ) . 'controller/wp_list_custom_groups.class.php' );

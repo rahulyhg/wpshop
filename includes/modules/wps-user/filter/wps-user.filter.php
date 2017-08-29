@@ -8,6 +8,8 @@
  * @subpackage Action
  */
 
+namespace wpshop;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -63,6 +65,7 @@ class WPS_User_Filter {
 
 		return $output;
 	}
+
 }
 
 new WPS_User_Filter();

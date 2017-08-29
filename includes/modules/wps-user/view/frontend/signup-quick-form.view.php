@@ -5,13 +5,13 @@
  * @package WPShop Users
  */
 
+namespace wpshop;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 ?><div class="wps-boxed" id="wps_signup_form_container">
 	<span class="wps-h5"><?php esc_html_e( 'Sign up', 'wpshop' ); ?></span>
-	<div id="wps_signup_error_container"></div>
 	<form action="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>" method="post" id="wps_quick_signup_form" >
 		<input type="hidden" name="action" value="wps_quick_signup" />
 		<?php wp_nonce_field( 'wps_quick_signup' ); ?>

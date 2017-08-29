@@ -87,7 +87,7 @@ class WPS_Account_Dashboard_Class {
 
 		switch ( $part ) {
 			case 'account':
-				$output  = do_shortcode( '[wps_account_form cid="' . $current_customer_id . '" ]' );
+				$output  = do_shortcode( '[wps_user_account_form cid="' . $current_customer_id . '" ]' );
 			break;
 			case 'address':
 				$output .= do_shortcode( '[wps_addresses cid="' . $current_customer_id . '" ]' );

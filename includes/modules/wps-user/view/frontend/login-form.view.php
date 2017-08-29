@@ -5,10 +5,11 @@
  * @package WPShop Users
  */
 
+namespace wpshop;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 ?><div class="wps-boxed" id="wps_login_form_container" >
 	<span class="wps-h5"><?php esc_html_e( 'login' ); ?></span>
 	<div id="wps_login_error_container" ></div>

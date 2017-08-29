@@ -5,6 +5,8 @@
  * @package WPShop Users
  */
 
+namespace wpshop;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

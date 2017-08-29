@@ -1,0 +1,14 @@
+{
+	"name": "Customers",
+	"slug": "wps-customer",
+	"version": "1.4.4.5",
+	"description": "Module for customers management",
+	"path": "includes/modules/wps-customer",
+	"dependencies": {
+		"model": {},
+		"class": {},
+		"action": {},
+		"shortcode": {},
+		"filter": {}
+	}
+}

@@ -968,25 +968,22 @@ class wps_cart {
 	 * AJAX - Pass to step two in the Checkout tunnel
 	 */
 	public static function wps_cart_pass_to_step_two() {
-		$_wpnonce = !empty( $_POST['_wpnonce'] ) ? sanitize_text_field( $_POST['_wpnonce'] ) : '';
+		check_ajax_referer( 'wps_cart_pass_to_step_two' );
 
-		if ( !wp_verify_nonce( $_wpnonce, 'wps_cart_pass_to_step_two' ) )
-			wp_die();
-
-		$status = false; $response = '';
+		$status = false;
+		$response = '';
 		$checkout_page_id = wpshop_tools::get_page_id( get_option( 'wpshop_checkout_page_id' ) );
-		if( !empty($checkout_page_id) ) {
+		if ( ! empty( $checkout_page_id ) ) {
 			$permalink_option = get_option( 'permalink_structure' );
 			$step = ( get_current_user_id() != 0 ) ?  3 : 2;
-			$response = get_permalink( $checkout_page_id  ).( ( !empty($permalink_option) ) ? '?' : '&').'order_step='.$step;
-			$response = apply_filters('wps_extra_signup_actions', $response);
+			$response = get_permalink( $checkout_page_id ) . ( ( ! empty( $permalink_option ) ) ? '?' : '&' ) . 'order_step=' . $step;
+			$response = apply_filters( 'wps_extra_signup_actions', $response );
 			$status = true;
+		} else {
+			$response = '<div class="wps-alert-error">' . __( 'An error was occured, please retry later or contact the website administrator', 'wpshop' ) . '</div>';
 		}
-		else {
-			$response = '<div class="wps-alert-error">' .__( 'An error was occured, please retry later or contact the website administrator', 'wpshop' ). '</div>';
-		}
-		echo json_encode( array( 'status' => $status, 'response' => $response));
-		die();
+
+		wp_die( wp_json_encode( array( 'status' => $status, 'response' => $response ) ) );
 	}
 
 
