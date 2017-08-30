@@ -731,7 +731,7 @@ class wps_cart {
 				$total_received += ( ( !empty($received['status']) && ( $received['status'] == 'payment_received') && !empty($received['received_amount']) ) ? $received['received_amount'] : 0 );
 			}
 		}
-		$cart_infos['order_amount_to_pay_now'] = $cart_infos['order_grand_total'] - $total_received;
+		$cart_infos['order_amount_to_pay_now'] = $cart_infos['order_amount_to_pay_now'] - $total_received;
 
 		// Apply cart rules
 		$cart_rule = wpshop_cart_rules::get_cart_rule( $cart_infos['order_grand_total'] );
