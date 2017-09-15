@@ -32,8 +32,19 @@ class WPS_Customer_Class extends \eoxia\Post_Class {
 	protected $model_name 	= '\wpshop\WPS_Customer_Model';
 
 	/**
+	 * SLug de base pour l'api rest
+	 *
+	 * @var string
+	 */
+	protected $base = 'wpshop-customers';
+
+	/**
 	 * Instanciation des clients / Instanciate customers' management
 	 */
-	protected function construct() { }
+	protected function construct() {
+		parent::construct();
+	}
 
 }
+
+WPS_Customer_Class::g();

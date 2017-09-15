@@ -28,8 +28,19 @@ class WPS_User_Class extends \eoxia\User_Class {
 	protected $model_name 	= '\wpshop\WPS_User_Model';
 
 	/**
+	 * SLug de base pour l'api rest
+	 *
+	 * @var string
+	 */
+	protected $base = 'wpshop-user';
+
+	/**
 	 * Instanciate the user
 	 */
-	protected function construct() { }
+	protected function construct() {
+		parent::construct();
+	}
 
 }
+
+WPS_User_Class::g();
